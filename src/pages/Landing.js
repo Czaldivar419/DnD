@@ -12,6 +12,7 @@ function LandingPage() {
           Welcome to the landing page of our application!
         </p>
         <Link to="/home">Go to Home Page</Link>
+        <Link to="/test">Go to test Page</Link>
       </header>
     </div>
   );
