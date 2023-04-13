@@ -8,7 +8,22 @@ import {
   PlayerListLinkData,
 } from "./styled/PlayerList.styled";
 
-const PlayerList = ({ players }) => {
+const players = [
+  {
+    id: 1,
+    name: "Shit Goblin",
+  },
+  {
+    id: 2,
+    name: "SS",
+  },
+  {
+    id: 3,
+    name: "BING CHILLING",
+  },
+];
+
+const PlayerList = () => {
   return (
     <PlayerListContainer>
       <PlayerListTitle>Player List</PlayerListTitle>
@@ -20,7 +35,7 @@ const PlayerList = ({ players }) => {
             <th>Stats</th>
           </tr>
         </thead>
-        {/* <tbody>
+        <tbody>
           {players.map((player) => (
             <PlayerListTableRow key={player.id}>
               <PlayerListNameData>{player.name}</PlayerListNameData>
@@ -32,7 +47,7 @@ const PlayerList = ({ players }) => {
               </PlayerListLinkData>
             </PlayerListTableRow>
           ))}
-        </tbody> */}
+        </tbody>
       </PlayerListTable>
     </PlayerListContainer>
   );

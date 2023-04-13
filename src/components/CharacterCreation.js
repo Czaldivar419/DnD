@@ -1,6 +1,15 @@
 import { React, useState } from "react";
 
-import { Form, Input, Label, Button } from "./styled/CharacterCreation.styled";
+import { Link } from "react-router-dom";
+
+import { 
+  Form, 
+  CreateNewButton, 
+  Input, 
+  Label, 
+  FormTitle, 
+  FormContainer, 
+  Button } from "./styled/CharacterCreation.styled";
 
 const CharacterCreation = ({ onSubmit }) => {
     const [name, setName] = useState('');
@@ -31,6 +40,14 @@ const CharacterCreation = ({ onSubmit }) => {
     };
   
     return (
+    <FormContainer>
+      <FormTitle>Create a new character</FormTitle>
+        <Link to="/home">
+          <CreateNewButton>
+            Back
+          </CreateNewButton>
+        </Link>
+
       <Form onSubmit={handleSubmit}>
         <Label htmlFor="name">Name:</Label>
         <Input
@@ -114,6 +131,7 @@ const CharacterCreation = ({ onSubmit }) => {
 
   <Button type="submit">Create Character</Button>
 </Form>
+</FormContainer>
 );
 };
 

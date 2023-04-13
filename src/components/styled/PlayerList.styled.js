@@ -20,6 +20,10 @@ export const PlayerListTable = styled.table`
   border-collapse: collapse;
   width: 100%;
   margin-top: 20px;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export const PlayerListTableRow = styled.tr`
@@ -30,11 +34,21 @@ export const PlayerListNameData = styled.td`
   padding: 10px;
   font-size: 18px;
   text-align: center;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 14px;
+    padding: 5px;
+  }
 `;
 
 export const PlayerListLinkData = styled.td`
   padding: 10px;
   text-align: center;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 14px;
+    padding: 5px;
+  }
 
   a {
     color: #fff;
@@ -48,6 +62,11 @@ export const PlayerListLinkData = styled.td`
     &:hover {
       background-color: #fff;
       color: #111;
+    }
+
+    @media only screen and (max-width: 768px) {
+      font-size: 14px;
+      padding: 5px 7px;
     }
   }
 `;

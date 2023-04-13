@@ -6,6 +6,10 @@ import { setContext } from '@apollo/client/link/context';
 import Landing from "./pages/Landing";
 import Home from './pages/Home';
 import Test from './pages/Test';
+import CreateCampaignPage from './pages/CreateCampaign';
+import CreateCharacterPage from './pages/CreateCharacter';
+import CampaignPage from './pages/Campaign';
+import CharacterPage from './pages/Character';
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
@@ -45,6 +49,20 @@ function App() {
                 path="/Test" 
                 element={<Test />}
               />
+              <Route 
+                path="/CreateCampaign" 
+                element={<CreateCampaignPage />}
+              />
+              <Route 
+                path="/CreateCharacter" 
+                element={<CreateCharacterPage />}
+              />
+              <Route 
+                path="/campaign/:id" 
+                element={<CampaignPage />} />
+                <Route 
+                path="/character/:id" 
+                element={<CharacterPage />} />
             </Routes>
           </div>
       </Router>

@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import { FormContainer, FormTitle, FormLabel, FormInput, 
-FormTextarea, FormButton } from './styled/CampaignCreation.styled';
+import { 
+  FormContainer, 
+  FormTitle, 
+  FormLabel, 
+  FormInput, 
+  FormTextarea, 
+  FormButton 
+} from './styled/CampaignCreation.styled';
+import { CreateNewButton } from './styled/CampaignList.styled';
 
 const CampaignCreation = (props) => {
     const [campaignName, setCampaignName] = useState('');
@@ -24,6 +32,11 @@ const CampaignCreation = (props) => {
     return (
       <FormContainer>
         <FormTitle>Create a new campaign</FormTitle>
+        <Link to="/home">
+          <CreateNewButton>
+            Back
+          </CreateNewButton>
+        </Link>
         <form onSubmit={handleSubmit}>
           <FormLabel htmlFor="campaignName">Campaign Name</FormLabel>
           <FormInput
