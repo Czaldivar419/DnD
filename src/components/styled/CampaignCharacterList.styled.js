@@ -55,3 +55,46 @@ export const CharacterListHPData = styled.td`
   font-size: 18px;
   text-align: center;
 `;
+
+export const CharacterInventoryContainer = styled.div`
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+`;
+
+export const CharacterInventoryTitle = styled.h2`
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+export const CharacterInventoryList = styled.ul`
+  list-style: none;
+  padding: 0;
+`;
+
+export const CharacterInventoryItem = styled.li`
+  margin-bottom: 5px;
+`;
+
+export const CharacterSpellsContainer = styled.div`
+  margin-top: 20px;
+  border: 1px solid black;
+  padding: 10px;
+`;
+
+export const CharacterSpellsTitle = styled.h2`
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+export const CharacterSpellsList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
+
+export const CharacterSpellsItem = styled.li`
+  margin-bottom: 5px;
+`;

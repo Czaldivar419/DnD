@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   CharacterListContainer,
   CharacterListTitle,
@@ -8,6 +8,14 @@ import {
   CharacterListClassData,
   CharacterListLevelData,
   CharacterListHPData,
+  CharacterInventoryContainer,
+  CharacterInventoryTitle,
+  CharacterInventoryList,
+  CharacterInventoryItem,
+  CharacterSpellsContainer,
+  CharacterSpellsTitle,
+  CharacterSpellsList,
+  CharacterSpellsItem,
 } from "./styled/CampaignCharacterList.styled";
 
 const characters = [
@@ -16,7 +24,8 @@ const characters = [
     name: "Bicepius",
     class: "Barbarian",
     level: 12,
-    inventory: "Greatsword, Javelins, Chainmail Armor",
+    inventory: ["Greatsword", "Javelins", "Chainmail Armor"],
+    spells: ["Lol", "test", "Testing"],
     hp: 180,
   },
   {
@@ -24,7 +33,8 @@ const characters = [
     name: "SS",
     class: "Druid",
     level: 11,
-    inventory: "Quarterstaff, Sickle, Leather Armor",
+    inventory: ["Quarterstaff", "Sickle", "Leather Armor"],
+    spells: ["Lol", "test", "Testing"],
     hp: 110,
   },
   {
@@ -32,12 +42,20 @@ const characters = [
     name: "Shit Goblin",
     class: "Ranger",
     level: 12,
-    inventory: "Longbow, Shortsword, Studded Leather Armor",
+    inventory: ["Longbow", "Shortsword", "Studded Leather Armor"],
+    spells: ["Lol", "test", "Testing"],
     hp: 130,
   },
 ];
 
+
 const CampaignCharacterList = () => {
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
+
+  const handleCharacterClick = (id) => {
+    setSelectedCharacter(id === selectedCharacter ? null : id);
+  };
+
   return (
     <CharacterListContainer>
       <CharacterListTitle>Character List</CharacterListTitle>
@@ -52,7 +70,11 @@ const CampaignCharacterList = () => {
         </thead>
         <tbody>
           {characters.map((character) => (
-            <CharacterListTableRow key={character.id}>
+            <CharacterListTableRow
+              key={character.id}
+              onClick={() => handleCharacterClick(character.id)}
+              selected={character.id === selectedCharacter}
+            >
               <CharacterListNameData>{character.name}</CharacterListNameData>
               <CharacterListClassData>{character.class}</CharacterListClassData>
               <CharacterListLevelData>{character.level}</CharacterListLevelData>
@@ -61,6 +83,34 @@ const CampaignCharacterList = () => {
           ))}
         </tbody>
       </CharacterListTable>
+      {selectedCharacter && (
+        <>
+          <CharacterInventoryContainer>
+            <CharacterInventoryTitle>
+              {characters.find((c) => c.id === selectedCharacter).name}'s Inventory
+            </CharacterInventoryTitle>
+            <CharacterInventoryList>
+              {characters
+                .find((c) => c.id === selectedCharacter)
+                .inventory.map((item) => (
+                  <CharacterInventoryItem key={item}>{item}</CharacterInventoryItem>
+                ))}
+            </CharacterInventoryList>
+          </CharacterInventoryContainer>
+          <CharacterSpellsContainer>
+            <CharacterSpellsTitle>
+              {characters.find((c) => c.id === selectedCharacter).name}'s Spells
+            </CharacterSpellsTitle>
+            <CharacterSpellsList>
+              {characters
+                .find((c) => c.id === selectedCharacter)
+                .spells.map((spell) => (
+                  <CharacterSpellsItem key={spell}>{spell}</CharacterSpellsItem>
+                ))}
+            </CharacterSpellsList>
+          </CharacterSpellsContainer>
+        </>
+      )}
     </CharacterListContainer>
   );
 };

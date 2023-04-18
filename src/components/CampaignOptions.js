@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import {
   OptionsContainer,
@@ -10,7 +11,11 @@ import {
 const CampaignOptions = ({ onLeave, onViewCharacters, onCreateCharacter }) => {
   return (
     <OptionsContainer>
-      <LeaveButton onClick={onLeave}>Leave Campaign</LeaveButton>
+      <Link to ="/home">
+      <LeaveButton>
+            Back
+          </LeaveButton>
+        </Link>
       <CharacterListButton onClick={onViewCharacters}>
         View Character List
       </CharacterListButton>
