@@ -1,0 +1,29 @@
+[{    
+    "campaignId": "0512",    
+    "campaignName": "Adventures in the Forgotten Realms",    
+    "dungeonMasterId": "64418e728817ede23b55c06e",    
+    "playerIds": [
+      "64418e728817ede23b55c06f", 
+      "64418e728817ede23b55c071"
+    ]
+  },
+  {
+    "campaignId": "6969",
+    "campaignName": "The Darkening of Tristram",
+    "dungeonMasterId": "64418e728817ede23b55c06f",
+    "playerIds": [
+      "64418e728817ede23b55c074", 
+      "64418e728817ede23b55c073", 
+      "64418e728817ede23b55c070"
+    ]
+  },
+  {
+    "campaignId": "0000",
+    "campaignName": "Curse of Strahd",
+    "dungeonMasterId": "64418e728817ede23b55c070",
+    "playerIds": [
+      "64418e728817ede23b55c06e", 
+      "64418e728817ede23b55c073"
+    ]
+  }
+]

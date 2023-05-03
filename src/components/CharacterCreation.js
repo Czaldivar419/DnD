@@ -2,6 +2,9 @@ import { React, useState } from "react";
 
 import { Link } from "react-router-dom";
 
+import { useMutation } from "@apollo/client";
+import { CREATE_CHARACTER } from "../utils/mutations";
+
 import { 
   Form, 
   CreateNewButton, 
@@ -12,7 +15,7 @@ import {
   Button } from "./styled/CharacterCreation.styled";
 
 const CharacterCreation = ({ onSubmit }) => {
-    const [name, setName] = useState('');
+    const [characterName, setName] = useState('');
     const [race, setRace] = useState('');
     const [classType, setClassType] = useState('');
     const [strength, setStrength] = useState('');
@@ -21,23 +24,38 @@ const CharacterCreation = ({ onSubmit }) => {
     const [intelligence, setIntelligence] = useState('');
     const [wisdom, setWisdom] = useState('');
     const [charisma, setCharisma] = useState('');
+
+    const [createCharacter, { loading, error }] = useMutation(CREATE_CHARACTER);
   
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      onSubmit({
-        name,
-        race,
-        classType,
-        stats: {
-          strength,
-          dexterity,
-          constitution,
-          intelligence,
-          wisdom,
-          charisma,
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  try {
+    const userId = sessionStorage.getItem("_id"); // Get the user ID from session storage
+    const campaignId = sessionStorage.getItem("campaign_id");
+    const { data } = await createCharacter({
+      variables: {
+        input: {
+          characterName: name, // use name for characterName field
+          campaignId,
+          race,
+          class: classType, // use classType for class field
+          stats: {
+            strength,
+            dexterity,
+            constitution,
+            intelligence,
+            wisdom,
+            charisma,
+          },
+          playerId: userId, // Add the user ID to the character input
         },
-      });
-    };
+      },
+    });
+    onSubmit(data.createCharacter);
+  } catch (e) {
+    console.log(e);
+  }
+};
   
     return (
     <FormContainer>
@@ -49,12 +67,12 @@ const CharacterCreation = ({ onSubmit }) => {
         </Link>
 
       <Form onSubmit={handleSubmit}>
-        <Label htmlFor="name">Name:</Label>
+        <Label htmlFor="characterName">Name:</Label>
         <Input
           type="text"
-          id="name"
-          name="name"
-          value={name}
+          id="characterName"
+          name="characterName"
+          value={characterName}
           onChange={(event) => setName(event.target.value)}
         />
   
@@ -128,6 +146,10 @@ const CharacterCreation = ({ onSubmit }) => {
             value={charisma}
             onChange={(event) => setCharisma(event.target.value)}
         />
+      
+
+
+
 
   <Button type="submit">Create Character</Button>
 </Form>

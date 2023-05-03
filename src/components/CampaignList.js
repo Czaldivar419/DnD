@@ -1,7 +1,8 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
-
+import { useQuery } from '@apollo/client';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { 
   CampaignListContainer, 
   CampaignListTable, 
@@ -10,34 +11,25 @@ import {
   CampaignListTile, 
   CampaignListCard, 
   CreateNewButton } from './styled/CampaignList.styled';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { QUERY_CAMPAIGNS } from '../utils/queries';
 
 const PlusIcon = () => <FontAwesomeIcon icon={faPlus} className="icon" />;
 
-const campaigns = [
-  {
-    id: 1,
-    name: "Campaign One",
-    description: "A fantastical adventure in a magical land",
-    dm: "John Doe"
-  },
-  {
-    id: 2,
-    name: "Campaign Two",
-    description: "A sci-fi journey across the universe",
-    dm: "Jane Smith"
-  },
-  {
-    id: 3,
-    name: "Campaign Three",
-    description: "A horror story set in a haunted house",
-    dm: "Bob Johnson"
-  }
-];
-
 const CampaignList = () => {
+  const { loading, error, data } = useQuery(QUERY_CAMPAIGNS);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+  const campaigns = data.campaigns;
+  console.log(campaigns);
+
+  const handleCampaignClick = (campaignId) => {
+    sessionStorage.setItem('campaignId', JSON.stringify(campaignId));
+    console.log(campaignId);
+  };
+
+
   return (
     <CampaignListContainer>
       <CampaignListTitle>Campaigns</CampaignListTitle>
@@ -50,11 +42,11 @@ const CampaignList = () => {
       <CampaignListCard>
         {campaigns.map((campaign) => (
           <Link to={`/campaign/${campaign.id}`} key={campaign.id}>
-            <CampaignListTile>
+            <CampaignListTile onClick={() => handleCampaignClick(campaign.campaignId)}>
               <CampaignListTable>
                 <tbody>
                   <tr>
-                    <CampaignListTableData>{campaign.name}</CampaignListTableData>
+                    <CampaignListTableData>{campaign.campaignName}</CampaignListTableData>
                   </tr>
                 </tbody>
               </CampaignListTable>

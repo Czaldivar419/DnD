@@ -1,12 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 import {
   OptionsContainer,
   LeaveButton,
-  CharacterListButton,
-  CreateCharacterButton,
+  CharacterListButton
 } from "./styled/CampaignOptions.styled";
+
+import { CreateNewButton } from "./styled/CampaignList.styled";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
+const PlusIcon = () => <FontAwesomeIcon icon={faPlus} className="icon" />;
 
 const CampaignOptions = ({ onLeave, onViewCharacters, onCreateCharacter }) => {
   return (
@@ -19,9 +26,12 @@ const CampaignOptions = ({ onLeave, onViewCharacters, onCreateCharacter }) => {
       <CharacterListButton onClick={onViewCharacters}>
         View Character List
       </CharacterListButton>
-      <CreateCharacterButton onClick={onCreateCharacter}>
-        Create New Character
-      </CreateCharacterButton>
+      <Link to="/createcharacter">
+          <CreateNewButton>
+            <PlusIcon />
+            Create New
+          </CreateNewButton>
+        </Link>
     </OptionsContainer>
   );
 };
